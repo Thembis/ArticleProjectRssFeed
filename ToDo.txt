@@ -1,0 +1,52 @@
+﻿USE [master]
+GO
+
+CREATE DATABASE [NewsFeeds]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'NewsFeeds
+', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\NewsFeeds.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'NewsFeeds_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\NewsFeeds_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+
+USE [NewsFeeds]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Articles](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](500) NOT NULL,
+	[Author] [nvarchar](500) NOT NULL,
+	[Content] [nvarchar](2000) NOT NULL,
+	[DateUpdated] [datetime] NOT NULL,
+	[Link] [nvarchar](2048) NOT NULL,
+ CONSTRAINT [PK_Articles] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Articles] ON 
+GO
+INSERT [dbo].[Articles] ([Id], [Title], [Author], [Content], [DateUpdated], [Link]) VALUES (5, N'Insurance Policy', N'Steven Smith', N'As part of a review of the insurance premiums payable by our clients, and to ensure that your premium remains market
+related,we have a new premium as per the attached policy schedule. This premium is an increased premium and takes into
+account both factors specific to the South African insurance industry landscape and factors applicable to your policy.', CAST(N'2022-01-07T00:00:00.000' AS DateTime), N'https://www.coingecko.com/en/coins/gala')
+GO
+INSERT [dbo].[Articles] ([Id], [Title], [Author], [Content], [DateUpdated], [Link]) VALUES (6, N'Blockchain', N'Alan eBster', N'We value you as our client and would like to take this opportunity to thank you for your ongoing support and for the
+continued opportunity to protect your home. We remain dedicated, together with our insurance partner, Guardrisk
+Insurance Company, to meeting your on-going home insurance needs.', CAST(N'2021-08-09T00:00:00.000' AS DateTime), N'https://www.coingecko.com/en/coins/gala')
+GO
+INSERT [dbo].[Articles] ([Id], [Title], [Author], [Content], [DateUpdated], [Link]) VALUES (8, N'My Business', N'Thembi Sithebe', N'As part of a review of the insurance premiums payable by our clients, and to ensure that your premium remains market related,we have a new premium as per the attached policy schedule. This premium is an increased premium and takes into account both factors specific to the South African insurance industry landscape and factors applicable to your policy.', CAST(N'2022-01-09T00:00:00.000' AS DateTime), N'https://www.coingecko.com/en/coins/gala')
+GO
+SET IDENTITY_INSERT [dbo].[Articles] OFF
+GO
+
+
+
+
+
